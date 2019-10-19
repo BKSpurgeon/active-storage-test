@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
-    def create
+  def create
     user = User.new(create_params)
-
+    byebug
     if user.save
       render json: success_json(user), status: :created
     else

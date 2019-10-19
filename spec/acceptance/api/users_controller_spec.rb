@@ -8,9 +8,9 @@ resource 'Api' do
 
   describe 'POST /api/users' do
     post '/api/users' do
-      let(:params) { { user: { username: username, avatar: avatar } } }
+      let(:avatar) { fixture_file_upload(Rails.root.join('public', 'avatar.jpg'), 'image/jpg') }
       let(:username) { 'Test User' }
-      let(:avatar) { fixture_file_upload('avatar.png') }
+      let(:params) { {  user: { username: username, avatar: avatar } } }
 
       context 'with avatar' do
         it { expect { do_request(params) }.to change { ActiveStorage::Attachment.count }.from(0).to(1) }
