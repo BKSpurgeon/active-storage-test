@@ -1,7 +1,11 @@
 class Api::UsersController < ApplicationController
   def create
     user = User.new(create_params)
-    byebug
+    # byebug
+    # ActionController::Parameters {"user"=><ActionController::Parameters {"username"=>"Test User"
+    #, "avatar"=><ActionController::Parameters {"original_filename"=>"avatar.jpg", "tempfile"=>"#<File:0x0000565318c55898>", "content_type"=>"image/jpg"} permitted: false>} permitted: false>, "format"=>:json, "controller"=>"api/users", "action"=>"create"} permitted: false>
+    # The params are not permitted. They should be.
+
     if user.save
       render json: success_json(user), status: :created
     else
